@@ -1,18 +1,14 @@
-package org.yyf;
+package org.yyf.springBootDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
-    @Autowired
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "d", method = RequestMethod.GET)
     public Iterable<Book> getAllBooks() {
         return null;
     }
@@ -21,5 +17,10 @@ public class BookController {
             RequestMethod.GET)
     public Book getBook(@PathVariable String isbn) {
         return null;
+    }
+    @RequestMapping("test")
+    @ResponseBody
+    public String test(){
+        return "hello,spring boot";
     }
 }

@@ -10,6 +10,7 @@ buildscript {
 	}
 }
 
+
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'spring-boot' 
@@ -29,16 +30,39 @@ repositories {
 
 configurations {
 	providedRuntime
+    all*.exclude module : 'spring-boot-starter-logging'//不想用默认的logback,排除掉，加入spring-boot-starter-log4j2
+
 }
 
 dependencies {
+    compile 'com.google.guava:guava:19.0'
+	compile('org.projectlombok:lombok:1.16.6')
+
+//    compile ('org.springframework.boot:spring-boot-starter') {
+//        exclude module : 'spring-boot-starter-logging'
+//    }
+//    compile ('org.springframework.boot:spring-boot-starter-web') {
+//        exclude module : 'spring-boot-starter-logging'
+//    }
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-aop')
-	compile('org.projectlombok:lombok:1.16.6')
-	compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+        compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
+//    //log
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+//    compile group: "org.apache.logging.log4j", name:"log4j-api", version:'2.5'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.5'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.5'
+
+    //servlet
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
 	runtime('mysql:mysql-connector-java')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
 
