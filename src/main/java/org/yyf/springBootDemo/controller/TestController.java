@@ -3,12 +3,12 @@ package org.yyf.springBootDemo.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yyf.springBootDemo.domain.ColorEnum;
 import org.yyf.springBootDemo.domain.User;
 import org.yyf.springBootDemo.service.MockRMIService;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -21,19 +21,21 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("test")
 public class TestController {
     private static final Logger logger = LogManager.getLogger();
-//    @Autowired
+    //    @Autowired
 //    private TestService testService;
     @Autowired
     private MockRMIService mockRMIService;
+
     @RequestMapping("ex")
-    public void ex(){
+    public void ex() {
 
         RuntimeException runtimeException = new RuntimeException("some exception occurs!");
-        logger.error("ahaha",runtimeException);
-        logger.info("asdfasdf",runtimeException);
+        logger.error("ahaha", runtimeException);
+        logger.info("asdfasdf", runtimeException);
         throw runtimeException;
 
     }
+
     @RequestMapping("test1")
     public String test(HttpServletRequest httpServletRequest) {
 //        testService.test();
@@ -54,24 +56,28 @@ public class TestController {
         logger.error("error info");
         logger.fatal("fatal info");
     }
+
     @RequestMapping("user")
     public User user(HttpServletRequest httpServletRequest) {
-        User user = new User(111L,"yyf",new Date(),true);
+        User user = new User(111L, "yyf", new Date(), true);
         user.setColorEnum(ColorEnum.blue);
         return user;
     }
+
     @RequestMapping("date")
-    public void date(Date date){
+    public void date(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date date) {
         System.out.println(date);
     }
+
     @RequestMapping("au")
-    public User user(User user,String name2){
+    public User user(User user, String name2) {
         System.out.println(user);
         System.out.println(name2);
         return user;
     }
+
     @RequestMapping("rmi")
-    public void rmi(){
+    public void rmi() {
         mockRMIService.sleep2();
 //        mockRMIService.sleepDouble();
         System.out.println("haha");
