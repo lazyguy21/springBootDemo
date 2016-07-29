@@ -51,6 +51,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
+
 //    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 //    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
