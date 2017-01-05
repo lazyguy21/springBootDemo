@@ -1,8 +1,10 @@
 package org.yyf.springBootDemo.controller;
 
+import com.google.common.collect.Maps;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,8 @@ import org.yyf.springBootDemo.service.MockRMIService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,6 +30,19 @@ public class TestController {
     @Autowired
     private MockRMIService mockRMIService;
 
+    @Value("${myname}")
+    private String myname;
+
+    @Value("${myAge}")
+    private Integer  myAge;
+
+    @RequestMapping("value")
+    public Map value(){
+        HashMap<Object, Object> result = Maps.newHashMap();
+        result.put("myname", myname);
+        result.put("myage", myAge);
+        return result;
+    }
     @RequestMapping("ex")
     public void ex() {
 

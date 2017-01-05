@@ -1,7 +1,7 @@
-package org.yyf;
+package org.yyf.springBootDemo.util;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.yyf.springBootDemo.configuration.DemoApplication;
 
 public class ServletInitializer extends SpringBootServletInitializer {
