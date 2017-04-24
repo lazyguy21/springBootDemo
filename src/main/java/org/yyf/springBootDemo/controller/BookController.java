@@ -21,6 +21,6 @@ public class BookController {
     @RequestMapping("test")
     @ResponseBody
     public String test(){
-        return "hello,spring boot";
+        return "hello,spridfng boot";
     }
 }

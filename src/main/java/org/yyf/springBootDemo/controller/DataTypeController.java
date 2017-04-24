@@ -22,7 +22,7 @@ public class DataTypeController {
         return maps;
     }
     @RequestMapping("testT")
-    public void testT(){
-        dataTypeService.testTransaction();
+    public void testT(boolean fail){
+        dataTypeService.testTransaction(fail);
     }
 }

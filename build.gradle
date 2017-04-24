@@ -15,6 +15,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'checkstyle'
+
 //apply plugin: 'war'
 
 
@@ -44,6 +46,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
+    compile("org.springframework.boot:spring-boot-devtools")//spring
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
