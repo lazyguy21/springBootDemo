@@ -47,6 +47,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1")
     compile("org.springframework.boot:spring-boot-devtools")//spring
+    compile "io.springfox:springfox-swagger2:2.6.1"//提供json化描述api的能力
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
