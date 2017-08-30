@@ -41,5 +41,8 @@
         <Logger name="org.yyf.gradleDemo" level="trace">
             <AppenderRef ref="appVerbose"/>
         </Logger>
+        <Logger name="org.springframework.cache" level="trace">
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
