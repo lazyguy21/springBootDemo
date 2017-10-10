@@ -2,18 +2,29 @@ package org.yyf.springBootDemo.propDemo;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.NotNull;
 
 import java.util.Map;
 
 /**
  * Created by tobi on 2017/4/6.
+ * adf.
  */
 @ConfigurationProperties(prefix = "t")
 public class TestProperties {
+    /**
+     * desc for good. will be generated in spring-configuration-metadata.json description
+     */
     private Boolean good;
+    @NotEmpty
     private String name;
+    @NotNull
     private Integer age;
+    //desc for map.
     private Map<String,String> map;
 
     public Map<String, String> getMap() {

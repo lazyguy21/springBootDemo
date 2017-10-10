@@ -16,7 +16,7 @@ import org.yyf.springBootDemo.propDemo.TestProperties;
 @EnableTransactionManagement
 @MapperScan("org.yyf.springBootDemo.dao")
 @PropertySource("classpath:test.properties")
-@EnableConfigurationProperties(TestProperties.class)
+@EnableConfigurationProperties({TestProperties.class,DemoProperties.class})
 public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
