@@ -14,6 +14,7 @@ public class User {
     private Date birthday;
     private Boolean ifOk;
     private ColorEnum colorEnum;
+    private User friend;
 
     public ColorEnum getColorEnum() {
         return colorEnum;
@@ -64,6 +65,14 @@ public class User {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public User getFriend() {
+        return friend;
+    }
+
+    public void setFriend(final User friend) {
+        this.friend = friend;
     }
 
     @Override
