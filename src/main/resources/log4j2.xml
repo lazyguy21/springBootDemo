@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn" monitorInterval="30">
     <Properties>
-        <Property name="pathName">${env:AppLogs}</Property>
+        <!--<Property name="pathName">${env:AppLogs}</Property>-->
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%X{trace-log-id} %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="allVerbose" fileName="${pathName}/allVerbose.log"
-                     filePattern="${pathName}/allVerbose.log.%d{yyyy-MM-dd}">
+        <RollingFile name="allVerbose" fileName="allVerbose.log" filePattern="allVerbose.log.%d{yyyy-MM-dd}">
+                     <!--filePattern="${pathName}/allVerbose.log.%d{yyyy-MM-dd}">-->
+
             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
-                <pattern>%X %d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</pattern>
+                <pattern>%X{trace-log-id} %d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</pattern>
             </PatternLayout>
             <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
         </RollingFile>
@@ -40,6 +41,10 @@
         </Root>
         <Logger name="org.yyf.gradleDemo" level="trace">
             <AppenderRef ref="appVerbose"/>
+        </Logger>
+        <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug">
+            <!--<AppenderRef ref="Console"/>-->
+            <!--<AppenderRef ref="allVerbose"/>-->
         </Logger>
     </Loggers>
 </Configuration>

@@ -8,7 +8,7 @@ import org.yyf.springBootDemo.springevent.MyEventPublisher;
 /**
  * Created by tobi on 2017/4/20.
  */
-@Configuration
+//@Configuration
 public class SpringEventConfig {
     @Bean
     public MyEventPublisher eventPublisher(){

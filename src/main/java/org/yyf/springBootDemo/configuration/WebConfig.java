@@ -10,12 +10,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.yyf.springBootDemo.aop.ExceptionFilter;
 import org.yyf.springBootDemo.aop.TestInterceptor;
+import org.yyf.springBootDemo.aop.TraceLogFilter;
+import org.yyf.springBootDemo.web.component.RequestLogFilter;
 
 import java.util.List;
 
@@ -108,6 +111,39 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         registration.setOrder(1);
         return registration;
     }
+    @Bean
+    public FilterRegistrationBean traceLogFilter() {
+
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new TraceLogFilter());
+        registration.addUrlPatterns("/*");
+        registration.setOrder(0);
+        return registration;
+    }
+    @Bean
+    public FilterRegistrationBean requestLogFilter() {
+
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new RequestLogFilter());
+        registration.addUrlPatterns("/*");
+//        registration.addInitParameter("paramName", "paramValue");
+        registration.setOrder(1);
+        return registration;
+    }
+
+
+
+    @Bean
+    public CommonsRequestLoggingFilter requestLoggingFilter() {
+        CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+        loggingFilter.setIncludeClientInfo(true);
+        loggingFilter.setIncludeQueryString(true);
+        loggingFilter.setIncludePayload(true);
+        loggingFilter.setIncludeHeaders(true);
+        return loggingFilter;
+    }
+
+
 
     @Bean
     public ExceptionFilter exceptionFilter(){

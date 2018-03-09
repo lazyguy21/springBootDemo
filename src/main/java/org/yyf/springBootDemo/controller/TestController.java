@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yyf.springBootDemo.domain.ColorEnum;
@@ -87,7 +88,7 @@ public class TestController {
     }
 
     @RequestMapping("au")
-    public User user(User user, String name2) {
+    public User user(@RequestBody User user, String name2) {
         System.out.println(user);
         System.out.println(name2);
         return user;
