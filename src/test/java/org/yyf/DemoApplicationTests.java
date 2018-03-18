@@ -26,4 +26,7 @@ public class DemoApplicationTests {
 		System.out.println(result);
 	}
 
+	@Test
+	public void testPost() throws Exception {
+	}
 }
