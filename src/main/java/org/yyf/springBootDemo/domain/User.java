@@ -4,9 +4,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+import lombok.Data;
+
 /**
  * Created by lazyguy on 2016-5-20.
  */
+@Data
 public class User {
     private Long id;
     private String name;
@@ -16,13 +19,7 @@ public class User {
     private ColorEnum colorEnum;
     private User friend;
 
-    public ColorEnum getColorEnum() {
-        return colorEnum;
-    }
-
-    public void setColorEnum(ColorEnum colorEnum) {
-        this.colorEnum = colorEnum;
-    }
+    private ComputerState computerState;
 
     public User() {
 
@@ -35,54 +32,5 @@ public class User {
         this.ifOk = ifOk;
     }
 
-    public Boolean getIfOk() {
-        return ifOk;
-    }
 
-    public void setIfOk(Boolean ifOk) {
-        this.ifOk = ifOk;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public User getFriend() {
-        return friend;
-    }
-
-    public void setFriend(final User friend) {
-        this.friend = friend;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", ifOk=" + ifOk +
-                ", colorEnum=" + colorEnum +
-                '}';
-    }
 }
