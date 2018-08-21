@@ -29,14 +29,14 @@ public enum ComputerState implements CodeInsideEnum {
     return computerState;
   }
 
-  public static void main(String[] args) throws IllegalAccessException, InstantiationException {
-    boolean assignableFrom1 = CodeInsideEnum.class.isAssignableFrom(ComputerState.class);
-    boolean assignableFrom2 = ArrayList.class.isAssignableFrom(List.class);
-    System.out.println(assignableFrom);
-    System.out.println(assignableFrom1);
-    System.out.println(assignableFrom2);
+//  public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+//    boolean assignableFrom1 = CodeInsideEnum.class.isAssignableFrom(ComputerState.class);
+//    boolean assignableFrom2 = ArrayList.class.isAssignableFrom(List.class);
+//    System.out.println(assignableFrom);
+//    System.out.println(assignableFrom1);
+//    System.out.println(assignableFrom2);
 //    System.out.println(ComputerState.class.newInstance() instanceof (CodeInsideEnum.class));
-  }
+//  }
 
   @JsonValue
   @Override
