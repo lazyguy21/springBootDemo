@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Map;
 
 public class InputStreamRequestWrapper extends HttpServletRequestWrapper {
   private byte[] requestBody;
@@ -21,6 +22,8 @@ public class InputStreamRequestWrapper extends HttpServletRequestWrapper {
 
   public InputStreamRequestWrapper(final HttpServletRequest request) throws IOException {
     super(request);
+    //在此调用一次取参方法，防止在post form表单时提前读取了流导致tomcat的getParameterMap方法失效
+    Map<String, String[]> parameterMap = request.getParameterMap();
     requestBody = ByteStreams.toByteArray(request.getInputStream());
 //    inputStream = new InputStreamExtractInputStream();
     inputStream = new ProxyServletInputStream(new ByteArrayInputStream(requestBody));

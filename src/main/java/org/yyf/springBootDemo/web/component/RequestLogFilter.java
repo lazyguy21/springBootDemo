@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import lombok.extern.slf4j.Slf4j;
@@ -58,16 +60,28 @@ public class RequestLogFilter extends OncePerRequestFilter {
 
 
   public final boolean isContentTypeOfLog(final HttpServletRequest request) {
+    return isJson(request) || isForm(request);
+
+  }
+
+  public Boolean  isJson(final HttpServletRequest request) {
     String contentType = request.getContentType();
     if (contentType != null) {
       contentType = contentType.toLowerCase();
-      boolean formType = contentType.startsWith(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-      boolean jsonType = contentType.startsWith(MediaType.APPLICATION_JSON_VALUE);
-      return formType || jsonType;
+      return contentType.startsWith(MediaType.APPLICATION_JSON_VALUE);
     } else {
       return false;
     }
+  }
 
+  public Boolean  isForm(final HttpServletRequest request) {
+    String contentType = request.getContentType();
+    if (contentType != null) {
+      contentType = contentType.toLowerCase();
+      return contentType.startsWith(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+    } else {
+      return false;
+    }
   }
 
   public Boolean logRequestBody(final HttpServletRequest request) {
@@ -109,9 +123,19 @@ public class RequestLogFilter extends OncePerRequestFilter {
     }
 
     if (logRequestBody(request)) {
-      msg.append(";requestBody=").append(((InputStreamRequestWrapper) request).getRequestBodyString());
+      if (isJson(request)) {
+        msg.append(";requestBody=").append(((InputStreamRequestWrapper) request).getRequestBodyString());
+      } else if (isForm(request)) {
+        msg.append(":request parameterMap:{");
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        parameterMap.entrySet().forEach(entrySet->{
+          msg.append(entrySet.getKey()).append("=").append(Arrays.toString(entrySet.getValue())).append(",");
+        });
+
+      }
     }
-    msg.append("]");
+    msg.append(" ]");
     return msg.toString();
   }
 }
