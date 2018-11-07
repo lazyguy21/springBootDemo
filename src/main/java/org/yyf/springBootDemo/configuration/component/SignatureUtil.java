@@ -34,7 +34,7 @@ public class SignatureUtil {
     KeyPairGenerator kpg;// 生成实现RSA算法的KeyPairGenerator对象
     try {
       kpg = KeyPairGenerator.getInstance("HmacSHA256");
-      kpg.initialize(512);// 初始化确定密钥的大小
+      kpg.initialize(1024);// 初始化确定密钥的大小
       KeyPair kp = kpg.generateKeyPair();// 生成密钥对
       PublicKey pbkey = kp.getPublic();// 创建公钥
       PrivateKey prkey = kp.getPrivate();// 创建私钥
